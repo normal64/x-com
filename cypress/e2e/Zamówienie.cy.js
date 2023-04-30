@@ -9,17 +9,15 @@ describe("template spec", () => {
     //Zaakceptuj modal, klikając w przycisk "w porządku"
     cy.get(".sc-1p1bjrl-9").click();
     //Dodaj pierwszy dostępny produkt do koszyka za pomocą ikony dodawania do koszyka
-    
-    
-    //nazwa produkta
-    cy.get('.sc-1s1zksu-0.iTOxKU.sc-ecmwfg-3.imtbYJ')
-    .find('.sc-1h16fat-0.dNrrmO')
-    .invoke('attr', 'title')
-    .then((title) => {
-      cy.wrap(title).as('title');
-      Cypress.env('myTitle', title); 
-    });
 
+    //nazwa produkta
+    cy.get(".sc-1s1zksu-0.iTOxKU.sc-ecmwfg-3.imtbYJ")
+      .find(".sc-1h16fat-0.dNrrmO")
+      .invoke("attr", "title")
+      .then((title) => {
+        cy.wrap(title).as("title");
+        Cypress.env("myTitle", title);
+      });
 
     cy.get(".sc-1s1zksu-0.iTOxKU.sc-ecmwfg-3.imtbYJ")
       .first()
@@ -33,20 +31,19 @@ describe("template spec", () => {
       waitForAnimations: false,
     });
     //Zweryfikuj zawartość koszyka cookies are clean so only 1 item should be present
-      cy.get('[data-name="basketProductList"]')
-    .find('li')
-    .should('have.length.at.least', 1);
+    cy.get('[data-name="basketProductList"]')
+      .find("li")
+      .should("have.length.at.least", 1);
 
     cy.get('[data-name="basketProductList"]')
-  .find('.sc-160wg4d-12.jTgJzw')
-  .invoke('text')
-  .then((text) => {
-    
-    cy.wrap(text).as('nameOfItem');
-  });
-  cy.get('@nameOfItem').then((name) => {
-    expect(name).to.equal(Cypress.env('myTitle'));
-  });
+      .find(".sc-160wg4d-12.jTgJzw")
+      .invoke("text")
+      .then((text) => {
+        cy.wrap(text).as("nameOfItem");
+      });
+    cy.get("@nameOfItem").then((name) => {
+      expect(name).to.equal(Cypress.env("myTitle"));
+    });
 
     //Rozwiń dropdown z liczbą określającą ilość sztuk produktu
     cy.url().then((url) => {
