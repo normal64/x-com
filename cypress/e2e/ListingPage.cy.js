@@ -22,8 +22,17 @@ describe("template spec", () => {
     cy.go("back");
 
     //Kliknij w prawą strzałkę dla paginacji górnej
-    cy.get(".sc-1h16fat-0.dNrrmO.sc-11oikyw-3.fWowUI").eq(0).click();
+    cy.get(".sc-1h16fat-0.dNrrmO.sc-11oikyw-3.fWowUI")
+      .eq(0)
+      .click({ force: true });
     //Wybierz filtr Producent
+    cy.get(".sc-3qnozx-1.kqTafb")
+      .eq(2)
+      .invoke("text")
+      .then((text) => {
+        const trimmedText = Cypress.$.trim(text);
+        cy.log("Element Text:", trimmedText);
+      });
     cy.get(".sc-3qnozx-1.kqTafb").eq(2).click();
 
     cy.get(".sc-1n7ydz7-12.hoHRjW").click();
